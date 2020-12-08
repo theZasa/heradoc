@@ -142,6 +142,8 @@ impl<'a, 'd> Target<'a, 'd> {
         let Target { inner, meta } = self;
 
         let canonicalize = |path: PathBuf| {
+let s = path.into_os_string().to_string_lossy().into_owned().replace("\\", "/");
+let path = Path::new(&s);
             match path.canonicalize() {
                 Ok(path) => Ok(path),
                 Err(e) => {

@@ -548,9 +548,14 @@ fn resolve_file<P: AsRef<str>>(
     document_folder: &Path, project_root: &Path, temp_dir: &Path, to_resolve: Option<P>, cfgoption_name: &str,
 ) -> Option<PathBuf> {
     // TODO: error handling
+
     let to_resolve = to_resolve?;
     let to_resolve = to_resolve.as_ref();
     let path = Path::new(to_resolve);
+
+let s = path.as_os_str().to_string_lossy().into_owned().replace("\\", "/");
+let path = Path::new(&s);
+
 
     // relative to input file
     if path.is_relative() {
