@@ -84,7 +84,7 @@ pub fn write_packages(cfg: &Config, out: &mut impl Write) -> Result<()> {
     writeln!(out, "\\usepackage{{pdfcomment}}")?;
     writeln!(out, "\\usepackage{{tabularx}}")?;
     // auto-wrap long tables at page boundaries
-    writeln!(out, "\\usepackage{{ltablex}}")?;
+    // writeln!(out, "\\usepackage{{ltablex}}")?;
     writeln!(out, "\\usepackage{{grffile}}")?;
     let fancy = [
         ("lhead", &cfg.lhead, &cfg.lhead_even), ("chead", &cfg.chead, &cfg.chead_even), ("rhead", &cfg.rhead, &cfg.rhead_even),
@@ -197,7 +197,7 @@ pub fn write_maketitle_info(cfg: &Config, short_author: ShortAuthor, out: &mut i
             joiner.join(format_args!("Supervisor: {}", supervisor))?;
         }
         if let Some(advisor) = &cfg.advisor {
-            joiner.join(format_args!("Advisor: {}", advisor))?;
+            joiner.join(format_args!("Advisors: {}", advisor))?;
         }
         writeln!(out, "}}")?;
     }
@@ -507,7 +507,7 @@ pub const THESIS_TITLE: &str = r#"
   \begin{tabular}{l l}
     Author: & \getAuthor{} \\
     Supervisor: & \getSupervisor{} \\
-    Advisor: & \getAdvisor{} \\
+    Advisors: & \getAdvisor{} \\
     Submission Date: & \getDate{} \\
   \end{tabular}
 
