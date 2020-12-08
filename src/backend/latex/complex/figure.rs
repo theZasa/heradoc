@@ -49,6 +49,7 @@ impl<'a, T: Environment + Debug> CodeGenUnit<'a, Figure<'a>> for AnyFigureGen<'a
     ) -> Result<Self> {
         let WithRange(Figure { label, caption }, _range) = figure;
         write!(gen.get_out(), "\\begin{{{}}}", T::to_str())?;
+		write!(gen.get_out(), "\\centering")?;
         Ok(AnyFigureGen { label, caption, _marker: PhantomData })
     }
 
